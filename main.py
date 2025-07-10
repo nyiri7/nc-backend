@@ -14,9 +14,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-
-
-# Endpoint to return the list of users
 @app.get("/users")
 async def get_users():
     users = User.load()
