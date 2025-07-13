@@ -22,12 +22,38 @@ class Party:
         else:
             return 1
         
-    def createParty():
+    @staticmethod
+    def createParty(party):
+        if os.path.exists("party.json"):
+            with open("party.json", "r", encoding="utf-8") as f:
+                try:
+                    j = json.load(f)
+                    
+                except json.JSONDecodeError:
+                    return False
+                j.id +=1
+                j.parties.append(party)
+                json.dump(j, f, indent=4)
+                return True
+        else:
+            j = {'id': 1, 'parties': [party]}
+            with open("party.json", "w", encoding="utf-8") as f:
+                json.dump(j, f, indent=4)
+            return True
+    
+    def addMember(self, user):
         if os.path.exists("party.json"):
             with open("party.json", "r", encoding="utf-8") as f:
                 try:
                     j = json.load(f)
                 except json.JSONDecodeError:
-                    return "JSON error"
+                    return False
+            j.parties[self.id - 1]['users'].append(user)
+            with open("party.json", "w", encoding="utf-8") as f:
+                json.dump(j, f, indent=4)
+            return True
         else:
-            return 1
+            j = {'id': 1, 'parties': [{'users': [user]}]}
+            with open("party.json", "w", encoding="utf-8") as f:
+                json.dump(j, f, indent=4)
+            return True
