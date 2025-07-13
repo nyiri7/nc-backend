@@ -8,8 +8,8 @@ class User:
         self.name = name
         self.amount = amount
 
-    @classmethod
-    def create_and_save(cls, name, amount, filename="user.json"):
+    @staticmethod
+    def create_and_save(name, amount, filename="user.json"):
         if os.path.exists(filename):
             with open(filename, "r", encoding="utf-8") as f:
                 try:
@@ -22,7 +22,7 @@ class User:
             new_id = max(u.get("id", 0) for u in users) + 1
         else:
             new_id = 1
-        user = cls(new_id, name, amount)
+        user = User(new_id, name, amount)
         user.save(filename)
         return {"id": new_id, "name": name, "amount": amount}
 
