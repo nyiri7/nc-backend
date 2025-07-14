@@ -50,7 +50,7 @@ class Party:
             with open("party.json", "w", encoding="utf-8") as k:
                 try:
                     json.dump(j, k, indent=4)
-                    return j["id"]
+                    return {"id":j["id"]}
                 except Exception as e:
                     return {"message": "Error creating party", "error": str(e)}
         else:
@@ -60,7 +60,7 @@ class Party:
                     json.dump(j, f, indent=4)
                 except Exception as e:
                     return {"message": "Error creating party", "error": str(e)}
-            return 1
+            return {"id": 1}
     
     def addMember(self, user):
         if os.path.exists("party.json"):
