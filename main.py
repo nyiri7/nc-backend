@@ -1,9 +1,9 @@
-from typing import Optional
+from datetime import datetime
 
 from fastapi import FastAPI, Body
 from fastapi.middleware.cors import CORSMiddleware
+from party import Party
 from user import User
-import os
 
 
 
@@ -31,16 +31,17 @@ async def get_users():
     return users
 
 
+@app.get("/parties")
+async def get_parties(id: int = 0):
+    result = Party.load(id)
+    return result
+
+@app.post("/parties")
+async def add_party(data:dict = Body(...)):
+    r = Party.createParty(Party(datetime.now(),"",data.get("users", [])))
+    return r
 
 @app.post("/users")
 async def add_user(data: dict = Body(...)):
-    name = data.get("name")
-    amount = data.get("amount")
-    if not name or amount is None:
-        return {"error": "Both 'name' and 'amount' are required."}
-    user = User.create_and_save(name, amount)
+    user = User.create_and_save(data.get("name"), data.get("amount"))
     return {"message": "User added", "user": user}
-
-"""@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}"""
