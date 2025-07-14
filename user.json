@@ -1,7 +1,12 @@
 [
     {
         "id": 1,
-        "name": "Alice",
+        "name": "Jancsi",
+        "amount": 1000
+    },
+    {
+        "id": 2,
+        "name": "Jancsi",
         "amount": 1000
     }
 ]

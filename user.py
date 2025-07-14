@@ -23,8 +23,14 @@ class User:
         else:
             new_id = 1
         user = User(new_id, name, amount)
-        user.save(filename)
-        return {"id": new_id, "name": name, "amount": amount}
+        users.append(user.__dict__)
+        with open(filename, "w", encoding="utf-8") as f:
+                try:
+                    json.dump(users, f, indent=4)
+                    return {"message": "Siker", "error": "Sikeres hozzáadás"}
+                except json.JSONDecodeError:
+                    return {"message": "Error saving user", "error": "Invalid JSON format"}
+        
 
 
     @staticmethod

@@ -44,4 +44,4 @@ async def add_party(data:dict = Body(...)):
 @app.post("/users")
 async def add_user(data: dict = Body(...)):
     user = User.create_and_save(data.get("name"), data.get("amount"))
-    return {"message": "User added", "user": user}
+    return user
