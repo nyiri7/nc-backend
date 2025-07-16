@@ -48,6 +48,11 @@ class Party:
                         index = i
                 if index != -1:
                     del p["users"][index]
+        with open("party.json", "w", encoding="utf-8") as f:
+            try:
+                json.dump(parties, f, indent=4)
+            except Exception as e:
+                return {"message": "Error creating party", "error": str(e)}
         return {"message": "User removed from party."} if index != -1 else {"message": "User not found in party."}
 
 
