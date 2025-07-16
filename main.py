@@ -43,7 +43,6 @@ async def add_party(data:dict = Body(...)):
 
 @app.put("/parties")
 async def leaveParty(data: dict = Body(...)):
-    p = Party.load(data.get("partyID"))
     m = data.get("user")
     User.leave(User(m.get("id"), m.get("name"), m.get("amount")))
     return Party.removeUser(data.get("partyID"), m.get("id"))

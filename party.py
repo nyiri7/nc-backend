@@ -39,7 +39,7 @@ class Party:
 
     @staticmethod
     def removeUser(pID,uID):
-        parties = Party.load()
+        parties = Party.load(0)
         index = -1
         for p in parties["parties"]:
             if p["id"]== pID:
