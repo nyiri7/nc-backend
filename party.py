@@ -38,6 +38,21 @@ class Party:
             return 1
 
     @staticmethod
+    def removeUser(pID,uID):
+        parties = Party.load()
+        index = -1
+        for p in parties["parties"]:
+            if p["id"]== pID:
+                for i,u in enumerate(p["users"]):
+                    if u["id"] == uID:
+                        index = i
+                if index != -1:
+                    del p["users"][index]
+        return {"message": "User removed from party."} if index != -1 else {"message": "User not found in party."}
+
+
+
+    @staticmethod
     def createParty(party):
         if os.path.exists("party.json"):
             with open("party.json", "r", encoding="utf-8") as f:

@@ -31,7 +31,19 @@ class User:
                 except json.JSONDecodeError:
                     return {"message": "Error saving user", "error": "Invalid JSON format"}
         
-
+    @staticmethod
+    def leave(inpUser, filename="user.json"):
+        users = User.load()
+        for u in users:
+            if(u.get("id")==inpUser.id):
+                u["amount"]=inpUser.amount
+                with open(filename, "w", encoding="utf-8") as f:
+                    try:
+                        json.dump(users, f, indent=4)
+                        return 1
+                    except json.JSONDecodeError:
+                        return 0
+        
 
     @staticmethod
     def load(filename="user.json"):

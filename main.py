@@ -41,6 +41,14 @@ async def add_party(data:dict = Body(...)):
     r = Party.createParty(Party(datetime.now(),"",data.get("users", [])))
     return r
 
+@app.put("/parties")
+async def leaveParty(data: dict = Body(...)):
+    p = Party.load(data.get("partyID"))
+    m = data.get("user")
+    User.leave(User(m.get("id"), m.get("name"), m.get("amount")))
+    return Party.removeUser(data.get("partyID"), m.get("id"))
+    
+
 @app.post("/users")
 async def add_user(data: dict = Body(...)):
     user = User.create_and_save(data.get("name"), data.get("amount"))
