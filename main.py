@@ -25,7 +25,7 @@ async def root():
 
 
 
-@app.get("/userss")
+@app.get("/users")
 async def get_users():
     users = User.load()
     return users
