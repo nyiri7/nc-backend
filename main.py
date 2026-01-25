@@ -1,11 +1,20 @@
-from datetime import datetime
+import json
+import os
+from dataclasses import asdict
+from typing import List
 
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
-from party import Party
-from user import User
 
+# Dataclassok importálása
+from models import User, Party, MoneyLog
 
+from data_layer import JsonDB
+
+# --- Adattároló réteg ---
+db = JsonDB()
+
+# --- API App ---
 
 app = FastAPI()
 
@@ -17,38 +26,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Party API Running (No Pydantic)"}
 
 
-
-@app.get("/users")
-async def get_users():
-    users = User.load()
-    return users
-
-
-@app.get("/parties")
-async def get_parties(id: int = 0):
-    result = Party.load(id)
-    return result
-
-@app.post("/parties")
-async def add_party(data:dict = Body(...)):
-    r = Party.createParty(Party(datetime.now(),"",data.get("users", [])))
-    return r
-
-@app.put("/parties")
-async def leaveParty(data: dict = Body(...)):
-    m = data.get("user")
-    User.leave(User(m.get("id"), m.get("name"), m.get("amount")))
-    return Party.removeUser(data.get("partyID"), m.get("id"))
-    
-
-@app.post("/users")
-async def add_user(data: dict = Body(...)):
-    user = User.create_and_save(data.get("name"), data.get("amount"))
-    return user
