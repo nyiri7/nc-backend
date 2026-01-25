@@ -16,9 +16,10 @@ class Party:
     # Fontos: a mutable típusoknál (mint a list) field(default_factory=...) kell
     user_ids: List[str] = field(default_factory=list)
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
+    adminCode: str = ""
     start_time: datetime = field(default_factory=datetime.now)
     end_time: Optional[datetime] = None
-    adminCode:str
+
 
 @dataclass
 class MoneyLog:
