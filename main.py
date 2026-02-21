@@ -1,14 +1,10 @@
 from typing import List, Optional
-
-# Új importok a biztonsághoz
 from fastapi import FastAPI, HTTPException, Body, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse
 from passlib.context import CryptContext
 import uuid
-
-# Dataclassok importálása (Feltételezem ezek léteznek a models.py-ban)
-from models import User, Party, MoneyLog
+from models import User, Party
 from data_layer import JsonDB
 
 
@@ -118,5 +114,9 @@ async def update_Party(party:Party,user:User):
 
 @app.delete("/api/party")
 async def delete_Party(party:Party):
+    users = db.get_users()
+    for u in users:
+        if u.current_party_id == party.id:
+            return {"message": "Party contains people."}
     db.delete_party(party)
     return {"message": "Party deleted successfully"}

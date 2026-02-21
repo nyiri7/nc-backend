@@ -3,7 +3,7 @@ import os
 from dataclasses import asdict
 from typing import List
 
-from models import User, Party, MoneyLog
+from models import User, Party
 
 
 class JsonDB:
@@ -76,9 +76,3 @@ class JsonDB:
             if p['id'] == party_id:
                 return p
         return None
-
-    # --- Log műveletek ---
-    def save_log(self, log: MoneyLog):
-        logs = self._read_json("logs")
-        logs.append(asdict(log))
-        self._write_json("logs", logs)
