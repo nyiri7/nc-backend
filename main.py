@@ -6,14 +6,13 @@ from passlib.context import CryptContext
 import uuid
 from models import User, Party
 from data_layer import JsonDB
+import os
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-VALID_ADMIN_HASHES = [
-
-]
+VALID_ADMIN_HASHES = os.getenv("VALID_ADMIN_HASHES", "").split(",")
 
 
 # --- Adattároló réteg ---
@@ -29,7 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 async def verify_admin_code(x_admin_code: Optional[str] = Header(None)):
     if x_admin_code is None:
