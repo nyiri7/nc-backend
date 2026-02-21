@@ -36,14 +36,19 @@ class JsonDB:
 
     def save_user(self, user: User):
         users = self.get_users()
-        users.append(asdict(user))
+        users.append(user.__dict__)
         self._write_json("users", users)
 
-    def update_user(self, updated_user: dict):
+    def update_user(self, updated_user: User):
         users = self.get_users()
-        users = [u if u['id'] != updated_user['id'] else updated_user for u in users]
+        users = [u if u['id'] != updated_user.id else updated_user.__dict__ for u in users]
         self._write_json("users", users)
 
+    def delete_user(self, user: User):
+        users = self.get_users()
+        users = [u for u in users if u['id'] != user.id]
+        self._write_json("users", users)
+        
     def get_user_by_id(self, user_id: str):
         users = self.get_users()
         for u in users:
@@ -57,12 +62,12 @@ class JsonDB:
 
     def save_party(self, party: Party):
         parties = self.get_parties()
-        parties.append(asdict(party))
+        parties.append(party.__dict__)
         self._write_json("parties", parties)
 
     def update_party(self, updated_party: dict):
         parties = self.get_parties()
-        parties = [p if p['id'] != updated_party['id'] else updated_party for p in parties]
+        parties = [p if p['id'] != updated_party['id'] else updated_party.__dict__ for p in parties]
         self._write_json("parties", parties)
 
     def get_party_by_id(self, party_id: str):

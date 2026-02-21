@@ -2,27 +2,25 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List, Optional
+from pydantic import BaseModel
 
-@dataclass
-class User:
+class User(BaseModel):
     name: str
     image: str
     money: float
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
     current_party_id: Optional[str] = None
 
-@dataclass
-class Party:
-    # Fontos: a mutable típusoknál (mint a list) field(default_factory=...) kell
-    user_ids: List[str] = field(default_factory=list)
+
+class Party(BaseModel):
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
     adminCode: str = ""
     start_time: datetime = field(default_factory=datetime.now)
     end_time: Optional[datetime] = None
 
 
-@dataclass
-class MoneyLog:
+
+class MoneyLog(BaseModel):
     user_id: str
     action: str
     amount_change: float
@@ -30,6 +28,6 @@ class MoneyLog:
     timestamp: datetime = field(default_factory=datetime.now)
     party_id: Optional[str] = None
 
-@dataclass
-class PartySummary:
+
+class PartySummary(BaseModel):
     party: Party
