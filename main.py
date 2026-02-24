@@ -55,6 +55,10 @@ async def verify_admin_code(x_admin_code: Optional[str] = Header(None)):
 async def root():
     return {"message": "Party API Running"}
 
+@app.get("/mate")
+async def mate():
+    return FileResponse("images/mate.png", media_type="image/png")
+
 @app.get("/pin")
 async def get_pin():
     return HTMLResponse(content=open("pin.html").read(), status_code=200)
