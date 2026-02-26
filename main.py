@@ -77,7 +77,7 @@ async def get_Users():
 async def create_User(user:User):
     user.id = str(uuid.uuid4())
     db.save_user(user)
-    return {"userModel": user}
+    return {user}
 
 @app.put("/api/user")
 async def update_User(user:User):
