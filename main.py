@@ -7,6 +7,7 @@ import uuid
 from models import User, Party
 from data_layer import JsonDB
 import os
+from mangum import Mangum
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -20,6 +21,7 @@ db = JsonDB()
 
 # --- API App ---
 app = FastAPI()
+handler = Mangum(app)
 
 app.add_middleware(
     CORSMiddleware,
