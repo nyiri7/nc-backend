@@ -113,29 +113,19 @@ async def get_Party(x_admin_code: Optional[str] = Header(None)):
 async def create_Party(party:Party,x_admin_code: Optional[str] = Header(None)):
     party.id = str(uuid.uuid4())
     party.adminCode = x_admin_code
-    party.start_time = int(uuid.uuid1().time)
     db.save_party(party)
     return party
 
 @app.put("/api/AddParty", dependencies=[Depends(verify_admin_code)])
 async def update_Party(party:Party,user:User):
-    db.update_party(party)
+    if user.current_party_id != "":
+        raise HTTPException(status_code=400, detail="User is already in a party.")
     user.current_party_id = party.id
     db.update_user(user)
-    return {"message": "Party updated successfully", "party": party}
+    return {"message": "User added to party successfully"}
 
 @app.put("/api/RemoveParty", dependencies=[Depends(verify_admin_code)])
 async def update_Party(party:Party,user:User):
-    db.update_party(party)
     user.current_party_id = ""
     db.update_user(user)
-    return {"message": "Party updated successfully", "party": party}
-
-@app.delete("/api/party", dependencies=[Depends(verify_admin_code)])
-async def delete_Party(party:Party):
-    users = db.get_users()
-    for u in users:
-        if u.current_party_id == party.id:
-            return {"message": "Party contains people."}
-    db.delete_party(party)
-    return {"message": "Party deleted successfully"}
+    return {"message": "User removed from party successfully"}

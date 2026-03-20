@@ -2,15 +2,15 @@
     {
         "name": "test",
         "image": "",
-        "money": 22.0,
+        "money": 33.0,
         "id": "66443a51-e594-4b2a-bec7-6859401c1afc",
-        "current_party_id": "aa"
+        "current_party_id": "39ec3d1f-3704-4afe-9899-70aa976f23c7"
     },
     {
         "name": "Alma",
         "image": "",
         "money": 2.0,
         "id": "4aa05a78-1da0-436b-aca8-2e57dd4729d6",
-        "current_party_id": ""
+        "current_party_id": "39ec3d1f-3704-4afe-9899-70aa976f23c7"
     }
 ]

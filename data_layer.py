@@ -58,7 +58,11 @@ class JsonDB:
 
     # --- Party műveletek ---
     def get_parties(self) -> List[dict]:
-        return self._read_json("parties")
+        try:
+            resp = self._read_json("parties")
+            return resp 
+        except FileNotFoundError:
+            return []
 
     def save_party(self, party: Party):
         parties = self.get_parties()
