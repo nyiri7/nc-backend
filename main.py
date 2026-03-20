@@ -92,7 +92,7 @@ async def create_User(user:User):
 @app.put("/api/user", dependencies=[Depends(verify_admin_code)])
 async def update_User(user:User):
     db.update_user(user)
-    return {"message": "User updated successfully", "user": user}
+    return user
 
 @app.delete("/api/user", dependencies=[Depends(verify_admin_code)])
 async def delete_User(user:User):

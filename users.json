@@ -1,16 +1,93 @@
 [
     {
-        "name": "test",
+        "name": "Pinke G\u00e1bor",
         "image": "",
-        "money": 33.0,
-        "id": "66443a51-e594-4b2a-bec7-6859401c1afc",
+        "money": 10000.0,
+        "id": "85f28a17-c16a-416e-bf31-48c094d66724",
+        "current_party_id": ""
+    },
+    {
+        "name": "Vincze M\u00e1t\u00e9",
+        "image": "",
+        "money": 10000.0,
+        "id": "f32465f2-4c69-44e7-82b2-4d05218b07b3",
+        "current_party_id": ""
+    },
+    {
+        "name": "Ga\u00e1l Benj\u00e1min",
+        "image": "",
+        "money": 10000.0,
+        "id": "0a9abc79-3fbc-4049-9a0f-e1cecb08938c",
+        "current_party_id": ""
+    },
+    {
+        "name": "Ny\u00edri Levente",
+        "image": "",
+        "money": 10000.0,
+        "id": "97927c98-f47e-41b9-92f8-fee0f9d33328",
+        "current_party_id": ""
+    },
+    {
+        "name": "B\u00e1rczai Zolt\u00e1n",
+        "image": "",
+        "money": 10000.0,
+        "id": "e28f8d03-5c2b-4488-8505-abd22b91618d",
+        "current_party_id": ""
+    },
+    {
+        "name": "Csele Laci",
+        "image": "",
+        "money": 10000.0,
+        "id": "9b179025-2e30-4333-8e68-b5bac98e31db",
+        "current_party_id": ""
+    },
+    {
+        "name": "Horv\u00e1th Levi",
+        "image": "",
+        "money": 10000.0,
+        "id": "805115d8-4c5c-48bc-9155-29127016632e",
+        "current_party_id": ""
+    },
+    {
+        "name": "Moln\u00e1r \u00c1kos",
+        "image": "",
+        "money": 10000.0,
+        "id": "8cdad28b-9453-454b-b13f-4866f2ae1c48",
         "current_party_id": "39ec3d1f-3704-4afe-9899-70aa976f23c7"
     },
     {
-        "name": "Alma",
+        "name": "Jancsicska",
         "image": "",
-        "money": 2.0,
-        "id": "4aa05a78-1da0-436b-aca8-2e57dd4729d6",
-        "current_party_id": "39ec3d1f-3704-4afe-9899-70aa976f23c7"
+        "money": 10000.0,
+        "id": "a9bee6b5-e8f3-4a19-8ef4-e340c5ed0a1c",
+        "current_party_id": ""
+    },
+    {
+        "name": "Menczel Krist\u00f3f",
+        "image": "",
+        "money": 10000.0,
+        "id": "82ed0cd8-57bc-4c07-a635-ec560f4fd8aa",
+        "current_party_id": ""
+    },
+    {
+        "name": "Szab\u00f3 P\u00e9ter",
+        "image": "",
+        "money": 10000.0,
+        "id": "9d64ed66-8489-4b81-a273-48281545ae47",
+        "current_party_id": ""
+    },
+    {
+        "name": "Tisza M\u00e1t\u00e9",
+        "image": "",
+        "money": 10000.0,
+        "id": "e769b572-65e0-4e04-987c-6909e58f4013",
+        "current_party_id": ""
+    },
+    {
+        "name": "Robi",
+        "image": "",
+        "money": 10000.0,
+        "id": "8db39de2-3f2d-4a21-85d8-c7bc94c06e03",
+        "current_party_id": ""
     }
 ]
